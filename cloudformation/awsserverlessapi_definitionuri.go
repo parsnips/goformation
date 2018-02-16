@@ -3,6 +3,8 @@ package cloudformation
 import (
 	"encoding/json"
 
+	"reflect"
+
 	"github.com/mitchellh/mapstructure"
 )
 
@@ -19,7 +21,7 @@ func (r AWSServerlessApi_DefinitionUri) value() interface{} {
 		return r.String
 	}
 
-	if r.S3Location != nil {
+	if r.S3Location != nil && !reflect.DeepEqual(r.S3Location, &AWSServerlessApi_S3Location{}) {
 		return r.S3Location
 	}
 

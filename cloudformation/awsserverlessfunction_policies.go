@@ -3,6 +3,8 @@ package cloudformation
 import (
 	"encoding/json"
 
+	"reflect"
+
 	"github.com/mitchellh/mapstructure"
 )
 
@@ -27,7 +29,7 @@ func (r AWSServerlessFunction_Policies) value() interface{} {
 		return r.StringArray
 	}
 
-	if r.IAMPolicyDocument != nil {
+	if r.IAMPolicyDocument != nil && !reflect.DeepEqual(r.IAMPolicyDocument, &AWSServerlessFunction_IAMPolicyDocument{}) {
 		return r.IAMPolicyDocument
 	}
 
