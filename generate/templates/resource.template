@@ -31,7 +31,7 @@ func (r *{{.StructName}}) MarshalJSON() ([]byte, error) {
   type Properties {{.StructName}}
   return json.Marshal(&struct{
     Type string
-    DependsOn *[]string
+    DependsOn *[]string `json:",omitempty"`
     {{if .IsCustomProperty}}Properties{{else}}Properties Properties{{end}}
   }{
     Type: r.AWSCloudFormationType(),
