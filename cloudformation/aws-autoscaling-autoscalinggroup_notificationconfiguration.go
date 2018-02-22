@@ -13,6 +13,8 @@ type AWSAutoScalingAutoScalingGroup_NotificationConfiguration struct {
 	// Required: true
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-notificationconfigurations.html#cfn-autoscaling-autoscalinggroup-notificationconfigurations-topicarn
 	TopicARN string `json:"TopicARN,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type

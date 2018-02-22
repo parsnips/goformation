@@ -54,6 +54,8 @@ type AWSEC2Route struct {
 	// Required: false
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-route.html#cfn-ec2-route-vpcpeeringconnectionid
 	VpcPeeringConnectionId string `json:"VpcPeeringConnectionId,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type
@@ -67,9 +69,11 @@ func (r *AWSEC2Route) MarshalJSON() ([]byte, error) {
 	type Properties AWSEC2Route
 	return json.Marshal(&struct {
 		Type       string
+		DependsOn  *[]string `json:",omitempty"`
 		Properties Properties
 	}{
 		Type:       r.AWSCloudFormationType(),
+		DependsOn:  r.DependsOn,
 		Properties: (Properties)(*r),
 	})
 }

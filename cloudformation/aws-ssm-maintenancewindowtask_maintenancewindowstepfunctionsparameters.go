@@ -13,6 +13,8 @@ type AWSSSMMaintenanceWindowTask_MaintenanceWindowStepFunctionsParameters struct
 	// Required: false
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-maintenancewindowtask-maintenancewindowstepfunctionsparameters.html#cfn-ssm-maintenancewindowtask-maintenancewindowstepfunctionsparameters-name
 	Name string `json:"Name,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type

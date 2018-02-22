@@ -28,6 +28,8 @@ type AWSWAFByteMatchSet_ByteMatchTuple struct {
 	// Required: true
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-waf-bytematchset-bytematchtuples.html#cfn-waf-bytematchset-bytematchtuples-texttransformation
 	TextTransformation string `json:"TextTransformation,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type

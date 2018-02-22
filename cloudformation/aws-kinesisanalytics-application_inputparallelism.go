@@ -8,6 +8,8 @@ type AWSKinesisAnalyticsApplication_InputParallelism struct {
 	// Required: false
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-application-inputparallelism.html#cfn-kinesisanalytics-application-inputparallelism-count
 	Count int `json:"Count,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type

@@ -23,6 +23,8 @@ type AWSDynamoDBTable_GlobalSecondaryIndex struct {
 	// Required: true
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-gsi.html#cfn-dynamodb-gsi-provisionedthroughput
 	ProvisionedThroughput *AWSDynamoDBTable_ProvisionedThroughput `json:"ProvisionedThroughput,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type

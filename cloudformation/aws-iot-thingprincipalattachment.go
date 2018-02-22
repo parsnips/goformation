@@ -19,6 +19,8 @@ type AWSIoTThingPrincipalAttachment struct {
 	// Required: true
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-thingprincipalattachment.html#cfn-iot-thingprincipalattachment-thingname
 	ThingName string `json:"ThingName,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type
@@ -32,9 +34,11 @@ func (r *AWSIoTThingPrincipalAttachment) MarshalJSON() ([]byte, error) {
 	type Properties AWSIoTThingPrincipalAttachment
 	return json.Marshal(&struct {
 		Type       string
+		DependsOn  *[]string `json:",omitempty"`
 		Properties Properties
 	}{
 		Type:       r.AWSCloudFormationType(),
+		DependsOn:  r.DependsOn,
 		Properties: (Properties)(*r),
 	})
 }

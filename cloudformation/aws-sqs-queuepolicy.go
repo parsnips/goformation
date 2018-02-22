@@ -19,6 +19,8 @@ type AWSSQSQueuePolicy struct {
 	// Required: true
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sqs-policy.html#cfn-sqs-queuepolicy-queues
 	Queues []string `json:"Queues,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type
@@ -32,9 +34,11 @@ func (r *AWSSQSQueuePolicy) MarshalJSON() ([]byte, error) {
 	type Properties AWSSQSQueuePolicy
 	return json.Marshal(&struct {
 		Type       string
+		DependsOn  *[]string `json:",omitempty"`
 		Properties Properties
 	}{
 		Type:       r.AWSCloudFormationType(),
+		DependsOn:  r.DependsOn,
 		Properties: (Properties)(*r),
 	})
 }

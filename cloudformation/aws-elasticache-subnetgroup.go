@@ -24,6 +24,8 @@ type AWSElastiCacheSubnetGroup struct {
 	// Required: true
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-subnetgroup.html#cfn-elasticache-subnetgroup-subnetids
 	SubnetIds []string `json:"SubnetIds,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type
@@ -37,9 +39,11 @@ func (r *AWSElastiCacheSubnetGroup) MarshalJSON() ([]byte, error) {
 	type Properties AWSElastiCacheSubnetGroup
 	return json.Marshal(&struct {
 		Type       string
+		DependsOn  *[]string `json:",omitempty"`
 		Properties Properties
 	}{
 		Type:       r.AWSCloudFormationType(),
+		DependsOn:  r.DependsOn,
 		Properties: (Properties)(*r),
 	})
 }

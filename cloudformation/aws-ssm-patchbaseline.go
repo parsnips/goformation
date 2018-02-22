@@ -54,6 +54,8 @@ type AWSSSMPatchBaseline struct {
 	// Required: false
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-patchbaseline.html#cfn-ssm-patchbaseline-rejectedpatches
 	RejectedPatches []string `json:"RejectedPatches,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type
@@ -67,9 +69,11 @@ func (r *AWSSSMPatchBaseline) MarshalJSON() ([]byte, error) {
 	type Properties AWSSSMPatchBaseline
 	return json.Marshal(&struct {
 		Type       string
+		DependsOn  *[]string `json:",omitempty"`
 		Properties Properties
 	}{
 		Type:       r.AWSCloudFormationType(),
+		DependsOn:  r.DependsOn,
 		Properties: (Properties)(*r),
 	})
 }

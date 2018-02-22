@@ -14,6 +14,8 @@ type AWSInspectorResourceGroup struct {
 	// Required: true
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-inspector-resourcegroup.html#cfn-inspector-resourcegroup-resourcegrouptags
 	ResourceGroupTags []Tag `json:"ResourceGroupTags,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type
@@ -27,9 +29,11 @@ func (r *AWSInspectorResourceGroup) MarshalJSON() ([]byte, error) {
 	type Properties AWSInspectorResourceGroup
 	return json.Marshal(&struct {
 		Type       string
+		DependsOn  *[]string `json:",omitempty"`
 		Properties Properties
 	}{
 		Type:       r.AWSCloudFormationType(),
+		DependsOn:  r.DependsOn,
 		Properties: (Properties)(*r),
 	})
 }

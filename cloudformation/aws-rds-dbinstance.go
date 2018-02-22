@@ -204,6 +204,8 @@ type AWSRDSDBInstance struct {
 	// Required: false
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-database-instance.html#cfn-rds-dbinstance-vpcsecuritygroups
 	VPCSecurityGroups []string `json:"VPCSecurityGroups,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type
@@ -217,9 +219,11 @@ func (r *AWSRDSDBInstance) MarshalJSON() ([]byte, error) {
 	type Properties AWSRDSDBInstance
 	return json.Marshal(&struct {
 		Type       string
+		DependsOn  *[]string `json:",omitempty"`
 		Properties Properties
 	}{
 		Type:       r.AWSCloudFormationType(),
+		DependsOn:  r.DependsOn,
 		Properties: (Properties)(*r),
 	})
 }

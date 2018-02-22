@@ -54,6 +54,8 @@ type AWSElasticLoadBalancingV2LoadBalancer struct {
 	// Required: false
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-loadbalancer.html#cfn-elasticloadbalancingv2-loadbalancer-type
 	Type string `json:"Type,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type
@@ -67,9 +69,11 @@ func (r *AWSElasticLoadBalancingV2LoadBalancer) MarshalJSON() ([]byte, error) {
 	type Properties AWSElasticLoadBalancingV2LoadBalancer
 	return json.Marshal(&struct {
 		Type       string
+		DependsOn  *[]string `json:",omitempty"`
 		Properties Properties
 	}{
 		Type:       r.AWSCloudFormationType(),
+		DependsOn:  r.DependsOn,
 		Properties: (Properties)(*r),
 	})
 }

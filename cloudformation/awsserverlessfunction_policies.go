@@ -33,6 +33,10 @@ func (r AWSServerlessFunction_Policies) value() interface{} {
 		return r.IAMPolicyDocument
 	}
 
+	if r.IAMPolicyDocument != nil {
+		return r.IAMPolicyDocument
+	}
+
 	if r.IAMPolicyDocumentArray != nil {
 		return r.IAMPolicyDocumentArray
 	}

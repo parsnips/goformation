@@ -39,6 +39,8 @@ type AWSWorkSpacesWorkspace struct {
 	// Required: false
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-workspaces-workspace.html#cfn-workspaces-workspace-volumeencryptionkey
 	VolumeEncryptionKey string `json:"VolumeEncryptionKey,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type
@@ -52,9 +54,11 @@ func (r *AWSWorkSpacesWorkspace) MarshalJSON() ([]byte, error) {
 	type Properties AWSWorkSpacesWorkspace
 	return json.Marshal(&struct {
 		Type       string
+		DependsOn  *[]string `json:",omitempty"`
 		Properties Properties
 	}{
 		Type:       r.AWSCloudFormationType(),
+		DependsOn:  r.DependsOn,
 		Properties: (Properties)(*r),
 	})
 }

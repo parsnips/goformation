@@ -44,6 +44,8 @@ type AWSApplicationAutoScalingScalableTarget struct {
 	// Required: true
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-applicationautoscaling-scalabletarget.html#cfn-applicationautoscaling-scalabletarget-servicenamespace
 	ServiceNamespace string `json:"ServiceNamespace,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type
@@ -57,9 +59,11 @@ func (r *AWSApplicationAutoScalingScalableTarget) MarshalJSON() ([]byte, error) 
 	type Properties AWSApplicationAutoScalingScalableTarget
 	return json.Marshal(&struct {
 		Type       string
+		DependsOn  *[]string `json:",omitempty"`
 		Properties Properties
 	}{
 		Type:       r.AWSCloudFormationType(),
+		DependsOn:  r.DependsOn,
 		Properties: (Properties)(*r),
 	})
 }

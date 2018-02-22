@@ -19,6 +19,8 @@ type AWSEC2VPNGatewayRoutePropagation struct {
 	// Required: true
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpn-gatewayrouteprop.html#cfn-ec2-vpngatewayrouteprop-vpngatewayid
 	VpnGatewayId string `json:"VpnGatewayId,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type
@@ -32,9 +34,11 @@ func (r *AWSEC2VPNGatewayRoutePropagation) MarshalJSON() ([]byte, error) {
 	type Properties AWSEC2VPNGatewayRoutePropagation
 	return json.Marshal(&struct {
 		Type       string
+		DependsOn  *[]string `json:",omitempty"`
 		Properties Properties
 	}{
 		Type:       r.AWSCloudFormationType(),
+		DependsOn:  r.DependsOn,
 		Properties: (Properties)(*r),
 	})
 }

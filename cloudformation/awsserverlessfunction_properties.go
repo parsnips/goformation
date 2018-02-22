@@ -59,6 +59,42 @@ func (r AWSServerlessFunction_Properties) value() interface{} {
 		return r.AlexaSkillEvent
 	}
 
+	if r.S3Event != nil {
+		return r.S3Event
+	}
+
+	if r.SNSEvent != nil {
+		return r.SNSEvent
+	}
+
+	if r.KinesisEvent != nil {
+		return r.KinesisEvent
+	}
+
+	if r.DynamoDBEvent != nil {
+		return r.DynamoDBEvent
+	}
+
+	if r.ApiEvent != nil {
+		return r.ApiEvent
+	}
+
+	if r.ScheduleEvent != nil {
+		return r.ScheduleEvent
+	}
+
+	if r.CloudWatchEventEvent != nil {
+		return r.CloudWatchEventEvent
+	}
+
+	if r.IoTRuleEvent != nil {
+		return r.IoTRuleEvent
+	}
+
+	if r.AlexaSkillEvent != nil {
+		return r.AlexaSkillEvent
+	}
+
 	return nil
 
 }

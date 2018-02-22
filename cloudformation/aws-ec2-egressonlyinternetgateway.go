@@ -14,6 +14,8 @@ type AWSEC2EgressOnlyInternetGateway struct {
 	// Required: true
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-egressonlyinternetgateway.html#cfn-ec2-egressonlyinternetgateway-vpcid
 	VpcId string `json:"VpcId,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type
@@ -27,9 +29,11 @@ func (r *AWSEC2EgressOnlyInternetGateway) MarshalJSON() ([]byte, error) {
 	type Properties AWSEC2EgressOnlyInternetGateway
 	return json.Marshal(&struct {
 		Type       string
+		DependsOn  *[]string `json:",omitempty"`
 		Properties Properties
 	}{
 		Type:       r.AWSCloudFormationType(),
+		DependsOn:  r.DependsOn,
 		Properties: (Properties)(*r),
 	})
 }

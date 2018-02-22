@@ -99,6 +99,8 @@ type AWSAutoScalingAutoScalingGroup struct {
 	// Required: false
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-group.html#cfn-as-group-vpczoneidentifier
 	VPCZoneIdentifier []string `json:"VPCZoneIdentifier,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type
@@ -112,9 +114,11 @@ func (r *AWSAutoScalingAutoScalingGroup) MarshalJSON() ([]byte, error) {
 	type Properties AWSAutoScalingAutoScalingGroup
 	return json.Marshal(&struct {
 		Type       string
+		DependsOn  *[]string `json:",omitempty"`
 		Properties Properties
 	}{
 		Type:       r.AWSCloudFormationType(),
+		DependsOn:  r.DependsOn,
 		Properties: (Properties)(*r),
 	})
 }

@@ -24,6 +24,8 @@ type AWSElasticBeanstalkApplication struct {
 	// Required: false
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-beanstalk.html#cfn-elasticbeanstalk-application-resourcelifecycleconfig
 	ResourceLifecycleConfig *AWSElasticBeanstalkApplication_ApplicationResourceLifecycleConfig `json:"ResourceLifecycleConfig,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type
@@ -37,9 +39,11 @@ func (r *AWSElasticBeanstalkApplication) MarshalJSON() ([]byte, error) {
 	type Properties AWSElasticBeanstalkApplication
 	return json.Marshal(&struct {
 		Type       string
+		DependsOn  *[]string `json:",omitempty"`
 		Properties Properties
 	}{
 		Type:       r.AWSCloudFormationType(),
+		DependsOn:  r.DependsOn,
 		Properties: (Properties)(*r),
 	})
 }

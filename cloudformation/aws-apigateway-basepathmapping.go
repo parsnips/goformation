@@ -29,6 +29,8 @@ type AWSApiGatewayBasePathMapping struct {
 	// Required: false
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-basepathmapping.html#cfn-apigateway-basepathmapping-stage
 	Stage string `json:"Stage,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type
@@ -42,9 +44,11 @@ func (r *AWSApiGatewayBasePathMapping) MarshalJSON() ([]byte, error) {
 	type Properties AWSApiGatewayBasePathMapping
 	return json.Marshal(&struct {
 		Type       string
+		DependsOn  *[]string `json:",omitempty"`
 		Properties Properties
 	}{
 		Type:       r.AWSCloudFormationType(),
+		DependsOn:  r.DependsOn,
 		Properties: (Properties)(*r),
 	})
 }

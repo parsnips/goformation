@@ -19,6 +19,8 @@ type AWSWAFRegionalSqlInjectionMatchSet struct {
 	// Required: false
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafregional-sqlinjectionmatchset.html#cfn-wafregional-sqlinjectionmatchset-sqlinjectionmatchtuples
 	SqlInjectionMatchTuples []AWSWAFRegionalSqlInjectionMatchSet_SqlInjectionMatchTuple `json:"SqlInjectionMatchTuples,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type
@@ -32,9 +34,11 @@ func (r *AWSWAFRegionalSqlInjectionMatchSet) MarshalJSON() ([]byte, error) {
 	type Properties AWSWAFRegionalSqlInjectionMatchSet
 	return json.Marshal(&struct {
 		Type       string
+		DependsOn  *[]string `json:",omitempty"`
 		Properties Properties
 	}{
 		Type:       r.AWSCloudFormationType(),
+		DependsOn:  r.DependsOn,
 		Properties: (Properties)(*r),
 	})
 }

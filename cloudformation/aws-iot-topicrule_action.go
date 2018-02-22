@@ -63,6 +63,8 @@ type AWSIoTTopicRule_Action struct {
 	// Required: false
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-action.html#cfn-iot-topicrule-action-sqs
 	Sqs *AWSIoTTopicRule_SqsAction `json:"Sqs,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type

@@ -44,6 +44,8 @@ type AWSAutoScalingScheduledAction struct {
 	// Required: false
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-as-scheduledaction.html#cfn-as-scheduledaction-starttime
 	StartTime string `json:"StartTime,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type
@@ -57,9 +59,11 @@ func (r *AWSAutoScalingScheduledAction) MarshalJSON() ([]byte, error) {
 	type Properties AWSAutoScalingScheduledAction
 	return json.Marshal(&struct {
 		Type       string
+		DependsOn  *[]string `json:",omitempty"`
 		Properties Properties
 	}{
 		Type:       r.AWSCloudFormationType(),
+		DependsOn:  r.DependsOn,
 		Properties: (Properties)(*r),
 	})
 }

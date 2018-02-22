@@ -29,6 +29,8 @@ type AWSApiGatewayDomainName struct {
 	// Required: false
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-domainname.html#cfn-apigateway-domainname-regionalcertificatearn
 	RegionalCertificateArn string `json:"RegionalCertificateArn,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type
@@ -42,9 +44,11 @@ func (r *AWSApiGatewayDomainName) MarshalJSON() ([]byte, error) {
 	type Properties AWSApiGatewayDomainName
 	return json.Marshal(&struct {
 		Type       string
+		DependsOn  *[]string `json:",omitempty"`
 		Properties Properties
 	}{
 		Type:       r.AWSCloudFormationType(),
+		DependsOn:  r.DependsOn,
 		Properties: (Properties)(*r),
 	})
 }

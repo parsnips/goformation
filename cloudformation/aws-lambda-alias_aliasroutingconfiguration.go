@@ -8,6 +8,8 @@ type AWSLambdaAlias_AliasRoutingConfiguration struct {
 	// Required: true
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-alias-aliasroutingconfiguration.html#cfn-lambda-alias-aliasroutingconfiguration-additionalversionweights
 	AdditionalVersionWeights []AWSLambdaAlias_VersionWeight `json:"AdditionalVersionWeights,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type

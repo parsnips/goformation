@@ -8,6 +8,8 @@ type AWSEventsRule_RunCommandParameters struct {
 	// Required: true
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-runcommandparameters.html#cfn-events-rule-runcommandparameters-runcommandtargets
 	RunCommandTargets []AWSEventsRule_RunCommandTarget `json:"RunCommandTargets,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type

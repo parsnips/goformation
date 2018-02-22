@@ -94,6 +94,8 @@ type AWSAutoScalingLaunchConfiguration struct {
 	// Required: false
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-launchconfig.html#cfn-as-launchconfig-userdata
 	UserData string `json:"UserData,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type
@@ -107,9 +109,11 @@ func (r *AWSAutoScalingLaunchConfiguration) MarshalJSON() ([]byte, error) {
 	type Properties AWSAutoScalingLaunchConfiguration
 	return json.Marshal(&struct {
 		Type       string
+		DependsOn  *[]string `json:",omitempty"`
 		Properties Properties
 	}{
 		Type:       r.AWSCloudFormationType(),
+		DependsOn:  r.DependsOn,
 		Properties: (Properties)(*r),
 	})
 }

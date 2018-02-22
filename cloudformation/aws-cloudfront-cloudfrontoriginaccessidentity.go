@@ -14,6 +14,8 @@ type AWSCloudFrontCloudFrontOriginAccessIdentity struct {
 	// Required: true
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-cloudfrontoriginaccessidentity.html#cfn-cloudfront-cloudfrontoriginaccessidentity-cloudfrontoriginaccessidentityconfig
 	CloudFrontOriginAccessIdentityConfig *AWSCloudFrontCloudFrontOriginAccessIdentity_CloudFrontOriginAccessIdentityConfig `json:"CloudFrontOriginAccessIdentityConfig,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type
@@ -27,9 +29,11 @@ func (r *AWSCloudFrontCloudFrontOriginAccessIdentity) MarshalJSON() ([]byte, err
 	type Properties AWSCloudFrontCloudFrontOriginAccessIdentity
 	return json.Marshal(&struct {
 		Type       string
+		DependsOn  *[]string `json:",omitempty"`
 		Properties Properties
 	}{
 		Type:       r.AWSCloudFormationType(),
+		DependsOn:  r.DependsOn,
 		Properties: (Properties)(*r),
 	})
 }

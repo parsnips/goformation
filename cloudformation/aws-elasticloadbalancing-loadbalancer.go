@@ -89,6 +89,8 @@ type AWSElasticLoadBalancingLoadBalancer struct {
 	// Required: false
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb.html#cfn-elasticloadbalancing-loadbalancer-tags
 	Tags []Tag `json:"Tags,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type
@@ -102,9 +104,11 @@ func (r *AWSElasticLoadBalancingLoadBalancer) MarshalJSON() ([]byte, error) {
 	type Properties AWSElasticLoadBalancingLoadBalancer
 	return json.Marshal(&struct {
 		Type       string
+		DependsOn  *[]string `json:",omitempty"`
 		Properties Properties
 	}{
 		Type:       r.AWSCloudFormationType(),
+		DependsOn:  r.DependsOn,
 		Properties: (Properties)(*r),
 	})
 }

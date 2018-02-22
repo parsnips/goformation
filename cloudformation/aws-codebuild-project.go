@@ -65,10 +65,17 @@ type AWSCodeBuildProject struct {
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codebuild-project.html#cfn-codebuild-project-timeoutinminutes
 	TimeoutInMinutes int `json:"TimeoutInMinutes,omitempty"`
 
+	// Triggers AWS CloudFormation Property
+	// Required: false
+	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codebuild-project.html#cfn-codebuild-project-triggers
+	Triggers *AWSCodeBuildProject_ProjectTriggers `json:"Triggers,omitempty"`
+
 	// VpcConfig AWS CloudFormation Property
 	// Required: false
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codebuild-project.html#cfn-codebuild-project-vpcconfig
 	VpcConfig *AWSCodeBuildProject_VpcConfig `json:"VpcConfig,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type
@@ -82,9 +89,11 @@ func (r *AWSCodeBuildProject) MarshalJSON() ([]byte, error) {
 	type Properties AWSCodeBuildProject
 	return json.Marshal(&struct {
 		Type       string
+		DependsOn  *[]string `json:",omitempty"`
 		Properties Properties
 	}{
 		Type:       r.AWSCloudFormationType(),
+		DependsOn:  r.DependsOn,
 		Properties: (Properties)(*r),
 	})
 }

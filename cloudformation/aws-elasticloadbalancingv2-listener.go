@@ -39,6 +39,8 @@ type AWSElasticLoadBalancingV2Listener struct {
 	// Required: false
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-listener.html#cfn-elasticloadbalancingv2-listener-sslpolicy
 	SslPolicy string `json:"SslPolicy,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type
@@ -52,9 +54,11 @@ func (r *AWSElasticLoadBalancingV2Listener) MarshalJSON() ([]byte, error) {
 	type Properties AWSElasticLoadBalancingV2Listener
 	return json.Marshal(&struct {
 		Type       string
+		DependsOn  *[]string `json:",omitempty"`
 		Properties Properties
 	}{
 		Type:       r.AWSCloudFormationType(),
+		DependsOn:  r.DependsOn,
 		Properties: (Properties)(*r),
 	})
 }

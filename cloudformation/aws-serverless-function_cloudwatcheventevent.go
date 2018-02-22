@@ -18,6 +18,8 @@ type AWSServerlessFunction_CloudWatchEventEvent struct {
 	// Required: true
 	// See: http://docs.aws.amazon.com/AmazonCloudWatch/latest/events/CloudWatchEventsandEventPatterns.html
 	Pattern interface{} `json:"Pattern,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type

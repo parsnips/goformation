@@ -29,6 +29,8 @@ type AWSWAFRegionalWebACL struct {
 	// Required: false
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafregional-webacl.html#cfn-wafregional-webacl-rules
 	Rules []AWSWAFRegionalWebACL_Rule `json:"Rules,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type
@@ -42,9 +44,11 @@ func (r *AWSWAFRegionalWebACL) MarshalJSON() ([]byte, error) {
 	type Properties AWSWAFRegionalWebACL
 	return json.Marshal(&struct {
 		Type       string
+		DependsOn  *[]string `json:",omitempty"`
 		Properties Properties
 	}{
 		Type:       r.AWSCloudFormationType(),
+		DependsOn:  r.DependsOn,
 		Properties: (Properties)(*r),
 	})
 }

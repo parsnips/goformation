@@ -9,6 +9,7 @@ import (
 // AWSCloudFormationWaitConditionHandle AWS CloudFormation Resource (AWS::CloudFormation::WaitConditionHandle)
 // See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-waitconditionhandle.html
 type AWSCloudFormationWaitConditionHandle struct {
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type
@@ -22,9 +23,11 @@ func (r *AWSCloudFormationWaitConditionHandle) MarshalJSON() ([]byte, error) {
 	type Properties AWSCloudFormationWaitConditionHandle
 	return json.Marshal(&struct {
 		Type       string
+		DependsOn  *[]string `json:",omitempty"`
 		Properties Properties
 	}{
 		Type:       r.AWSCloudFormationType(),
+		DependsOn:  r.DependsOn,
 		Properties: (Properties)(*r),
 	})
 }

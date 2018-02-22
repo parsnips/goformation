@@ -34,6 +34,8 @@ type AWSApiGatewayUsagePlan struct {
 	// Required: false
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-usageplan.html#cfn-apigateway-usageplan-usageplanname
 	UsagePlanName string `json:"UsagePlanName,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type
@@ -47,9 +49,11 @@ func (r *AWSApiGatewayUsagePlan) MarshalJSON() ([]byte, error) {
 	type Properties AWSApiGatewayUsagePlan
 	return json.Marshal(&struct {
 		Type       string
+		DependsOn  *[]string `json:",omitempty"`
 		Properties Properties
 	}{
 		Type:       r.AWSCloudFormationType(),
+		DependsOn:  r.DependsOn,
 		Properties: (Properties)(*r),
 	})
 }

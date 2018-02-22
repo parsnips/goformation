@@ -44,6 +44,8 @@ type AWSCognitoUserPoolClient struct {
 	// Required: false
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpoolclient.html#cfn-cognito-userpoolclient-writeattributes
 	WriteAttributes []string `json:"WriteAttributes,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type
@@ -57,9 +59,11 @@ func (r *AWSCognitoUserPoolClient) MarshalJSON() ([]byte, error) {
 	type Properties AWSCognitoUserPoolClient
 	return json.Marshal(&struct {
 		Type       string
+		DependsOn  *[]string `json:",omitempty"`
 		Properties Properties
 	}{
 		Type:       r.AWSCloudFormationType(),
+		DependsOn:  r.DependsOn,
 		Properties: (Properties)(*r),
 	})
 }

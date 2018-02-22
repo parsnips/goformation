@@ -33,6 +33,8 @@ type AWSGlueConnection_ConnectionInput struct {
 	// Required: false
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-connection-connectioninput.html#cfn-glue-connection-connectioninput-physicalconnectionrequirements
 	PhysicalConnectionRequirements *AWSGlueConnection_PhysicalConnectionRequirements `json:"PhysicalConnectionRequirements,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type

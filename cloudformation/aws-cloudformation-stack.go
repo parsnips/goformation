@@ -34,6 +34,8 @@ type AWSCloudFormationStack struct {
 	// Required: false
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-stack.html#cfn-cloudformation-stack-timeoutinminutes
 	TimeoutInMinutes int `json:"TimeoutInMinutes,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type
@@ -47,9 +49,11 @@ func (r *AWSCloudFormationStack) MarshalJSON() ([]byte, error) {
 	type Properties AWSCloudFormationStack
 	return json.Marshal(&struct {
 		Type       string
+		DependsOn  *[]string `json:",omitempty"`
 		Properties Properties
 	}{
 		Type:       r.AWSCloudFormationType(),
+		DependsOn:  r.DependsOn,
 		Properties: (Properties)(*r),
 	})
 }

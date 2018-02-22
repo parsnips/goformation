@@ -19,6 +19,8 @@ type AWSWAFRegionalXssMatchSet struct {
 	// Required: false
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafregional-xssmatchset.html#cfn-wafregional-xssmatchset-xssmatchtuples
 	XssMatchTuples []AWSWAFRegionalXssMatchSet_XssMatchTuple `json:"XssMatchTuples,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type
@@ -32,9 +34,11 @@ func (r *AWSWAFRegionalXssMatchSet) MarshalJSON() ([]byte, error) {
 	type Properties AWSWAFRegionalXssMatchSet
 	return json.Marshal(&struct {
 		Type       string
+		DependsOn  *[]string `json:",omitempty"`
 		Properties Properties
 	}{
 		Type:       r.AWSCloudFormationType(),
+		DependsOn:  r.DependsOn,
 		Properties: (Properties)(*r),
 	})
 }

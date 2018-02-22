@@ -18,6 +18,8 @@ type AWSKinesisAnalyticsApplicationReferenceDataSource_ReferenceSchema struct {
 	// Required: true
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-applicationreferencedatasource-referenceschema.html#cfn-kinesisanalytics-applicationreferencedatasource-referenceschema-recordformat
 	RecordFormat *AWSKinesisAnalyticsApplicationReferenceDataSource_RecordFormat `json:"RecordFormat,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type

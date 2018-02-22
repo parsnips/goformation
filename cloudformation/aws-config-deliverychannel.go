@@ -34,6 +34,8 @@ type AWSConfigDeliveryChannel struct {
 	// Required: false
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-config-deliverychannel.html#cfn-config-deliverychannel-snstopicarn
 	SnsTopicARN string `json:"SnsTopicARN,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type
@@ -47,9 +49,11 @@ func (r *AWSConfigDeliveryChannel) MarshalJSON() ([]byte, error) {
 	type Properties AWSConfigDeliveryChannel
 	return json.Marshal(&struct {
 		Type       string
+		DependsOn  *[]string `json:",omitempty"`
 		Properties Properties
 	}{
 		Type:       r.AWSCloudFormationType(),
+		DependsOn:  r.DependsOn,
 		Properties: (Properties)(*r),
 	})
 }

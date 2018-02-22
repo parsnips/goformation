@@ -14,6 +14,8 @@ type AWSGlueClassifier struct {
 	// Required: false
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-classifier.html#cfn-glue-classifier-grokclassifier
 	GrokClassifier *AWSGlueClassifier_GrokClassifier `json:"GrokClassifier,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type
@@ -27,9 +29,11 @@ func (r *AWSGlueClassifier) MarshalJSON() ([]byte, error) {
 	type Properties AWSGlueClassifier
 	return json.Marshal(&struct {
 		Type       string
+		DependsOn  *[]string `json:",omitempty"`
 		Properties Properties
 	}{
 		Type:       r.AWSCloudFormationType(),
+		DependsOn:  r.DependsOn,
 		Properties: (Properties)(*r),
 	})
 }

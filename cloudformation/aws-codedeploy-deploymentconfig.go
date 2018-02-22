@@ -19,6 +19,8 @@ type AWSCodeDeployDeploymentConfig struct {
 	// Required: false
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codedeploy-deploymentconfig.html#cfn-codedeploy-deploymentconfig-minimumhealthyhosts
 	MinimumHealthyHosts *AWSCodeDeployDeploymentConfig_MinimumHealthyHosts `json:"MinimumHealthyHosts,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type
@@ -32,9 +34,11 @@ func (r *AWSCodeDeployDeploymentConfig) MarshalJSON() ([]byte, error) {
 	type Properties AWSCodeDeployDeploymentConfig
 	return json.Marshal(&struct {
 		Type       string
+		DependsOn  *[]string `json:",omitempty"`
 		Properties Properties
 	}{
 		Type:       r.AWSCloudFormationType(),
+		DependsOn:  r.DependsOn,
 		Properties: (Properties)(*r),
 	})
 }

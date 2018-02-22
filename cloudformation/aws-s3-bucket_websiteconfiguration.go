@@ -23,6 +23,8 @@ type AWSS3Bucket_WebsiteConfiguration struct {
 	// Required: false
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-websiteconfiguration.html#cfn-s3-websiteconfiguration-routingrules
 	RoutingRules []AWSS3Bucket_RoutingRule `json:"RoutingRules,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type

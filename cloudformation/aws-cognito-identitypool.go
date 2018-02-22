@@ -59,6 +59,8 @@ type AWSCognitoIdentityPool struct {
 	// Required: false
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-identitypool.html#cfn-cognito-identitypool-supportedloginproviders
 	SupportedLoginProviders interface{} `json:"SupportedLoginProviders,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type
@@ -72,9 +74,11 @@ func (r *AWSCognitoIdentityPool) MarshalJSON() ([]byte, error) {
 	type Properties AWSCognitoIdentityPool
 	return json.Marshal(&struct {
 		Type       string
+		DependsOn  *[]string `json:",omitempty"`
 		Properties Properties
 	}{
 		Type:       r.AWSCloudFormationType(),
+		DependsOn:  r.DependsOn,
 		Properties: (Properties)(*r),
 	})
 }

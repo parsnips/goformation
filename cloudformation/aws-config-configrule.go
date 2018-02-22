@@ -39,6 +39,8 @@ type AWSConfigConfigRule struct {
 	// Required: true
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-config-configrule.html#cfn-config-configrule-source
 	Source *AWSConfigConfigRule_Source `json:"Source,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type
@@ -52,9 +54,11 @@ func (r *AWSConfigConfigRule) MarshalJSON() ([]byte, error) {
 	type Properties AWSConfigConfigRule
 	return json.Marshal(&struct {
 		Type       string
+		DependsOn  *[]string `json:",omitempty"`
 		Properties Properties
 	}{
 		Type:       r.AWSCloudFormationType(),
+		DependsOn:  r.DependsOn,
 		Properties: (Properties)(*r),
 	})
 }

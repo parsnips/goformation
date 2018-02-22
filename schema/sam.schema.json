@@ -4644,6 +4644,9 @@
                         "TimeoutInMinutes": {
                             "type": "number"
                         },
+                        "Triggers": {
+                            "$ref": "#/definitions/AWS::CodeBuild::Project.ProjectTriggers"
+                        },
                         "VpcConfig": {
                             "$ref": "#/definitions/AWS::CodeBuild::Project.VpcConfig"
                         }
@@ -4757,6 +4760,15 @@
             "required": [
                 "Type"
             ],
+            "type": "object"
+        },
+        "AWS::CodeBuild::Project.ProjectTriggers": {
+            "additionalProperties": false,
+            "properties": {
+                "Webhook": {
+                    "type": "boolean"
+                }
+            },
             "type": "object"
         },
         "AWS::CodeBuild::Project.Source": {
@@ -28395,10 +28407,6 @@
                     "type": "string"
                 }
             },
-            "required": [
-                "Key",
-                "Value"
-            ],
             "type": "object"
         }
     },

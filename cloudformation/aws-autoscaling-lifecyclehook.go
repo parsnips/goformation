@@ -49,6 +49,8 @@ type AWSAutoScalingLifecycleHook struct {
 	// Required: false
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-as-lifecyclehook.html#cfn-as-lifecyclehook-rolearn
 	RoleARN string `json:"RoleARN,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type
@@ -62,9 +64,11 @@ func (r *AWSAutoScalingLifecycleHook) MarshalJSON() ([]byte, error) {
 	type Properties AWSAutoScalingLifecycleHook
 	return json.Marshal(&struct {
 		Type       string
+		DependsOn  *[]string `json:",omitempty"`
 		Properties Properties
 	}{
 		Type:       r.AWSCloudFormationType(),
+		DependsOn:  r.DependsOn,
 		Properties: (Properties)(*r),
 	})
 }

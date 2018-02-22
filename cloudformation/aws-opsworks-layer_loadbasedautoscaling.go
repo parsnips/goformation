@@ -18,6 +18,8 @@ type AWSOpsWorksLayer_LoadBasedAutoScaling struct {
 	// Required: false
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-layer-loadbasedautoscaling.html#cfn-opsworks-layer-loadbasedautoscaling-upscaling
 	UpScaling *AWSOpsWorksLayer_AutoScalingThresholds `json:"UpScaling,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type

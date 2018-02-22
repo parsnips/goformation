@@ -24,6 +24,8 @@ type AWSElasticBeanstalkApplicationVersion struct {
 	// Required: true
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-beanstalk-version.html#cfn-elasticbeanstalk-applicationversion-sourcebundle
 	SourceBundle *AWSElasticBeanstalkApplicationVersion_SourceBundle `json:"SourceBundle,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type
@@ -37,9 +39,11 @@ func (r *AWSElasticBeanstalkApplicationVersion) MarshalJSON() ([]byte, error) {
 	type Properties AWSElasticBeanstalkApplicationVersion
 	return json.Marshal(&struct {
 		Type       string
+		DependsOn  *[]string `json:",omitempty"`
 		Properties Properties
 	}{
 		Type:       r.AWSCloudFormationType(),
+		DependsOn:  r.DependsOn,
 		Properties: (Properties)(*r),
 	})
 }

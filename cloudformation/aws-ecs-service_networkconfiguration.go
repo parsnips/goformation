@@ -8,6 +8,8 @@ type AWSECSService_NetworkConfiguration struct {
 	// Required: false
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-networkconfiguration.html#cfn-ecs-service-networkconfiguration-awsvpcconfiguration
 	AwsvpcConfiguration *AWSECSService_AwsVpcConfiguration `json:"AwsvpcConfiguration,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type

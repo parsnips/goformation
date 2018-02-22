@@ -104,6 +104,8 @@ type AWSOpsWorksLayer struct {
 	// Required: false
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opsworks-layer.html#cfn-opsworks-layer-volumeconfigurations
 	VolumeConfigurations []AWSOpsWorksLayer_VolumeConfiguration `json:"VolumeConfigurations,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type
@@ -117,9 +119,11 @@ func (r *AWSOpsWorksLayer) MarshalJSON() ([]byte, error) {
 	type Properties AWSOpsWorksLayer
 	return json.Marshal(&struct {
 		Type       string
+		DependsOn  *[]string `json:",omitempty"`
 		Properties Properties
 	}{
 		Type:       r.AWSCloudFormationType(),
+		DependsOn:  r.DependsOn,
 		Properties: (Properties)(*r),
 	})
 }

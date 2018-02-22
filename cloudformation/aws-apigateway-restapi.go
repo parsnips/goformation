@@ -59,6 +59,8 @@ type AWSApiGatewayRestApi struct {
 	// Required: false
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-restapi.html#cfn-apigateway-restapi-parameters
 	Parameters map[string]string `json:"Parameters,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type
@@ -72,9 +74,11 @@ func (r *AWSApiGatewayRestApi) MarshalJSON() ([]byte, error) {
 	type Properties AWSApiGatewayRestApi
 	return json.Marshal(&struct {
 		Type       string
+		DependsOn  *[]string `json:",omitempty"`
 		Properties Properties
 	}{
 		Type:       r.AWSCloudFormationType(),
+		DependsOn:  r.DependsOn,
 		Properties: (Properties)(*r),
 	})
 }

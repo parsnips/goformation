@@ -25,6 +25,10 @@ func (r AWSServerlessFunction_CodeUri) value() interface{} {
 		return r.S3Location
 	}
 
+	if r.S3Location != nil {
+		return r.S3Location
+	}
+
 	return nil
 
 }

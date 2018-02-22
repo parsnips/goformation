@@ -89,6 +89,8 @@ type AWSElasticLoadBalancingV2TargetGroup struct {
 	// Required: true
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-targetgroup.html#cfn-elasticloadbalancingv2-targetgroup-vpcid
 	VpcId string `json:"VpcId,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type
@@ -102,9 +104,11 @@ func (r *AWSElasticLoadBalancingV2TargetGroup) MarshalJSON() ([]byte, error) {
 	type Properties AWSElasticLoadBalancingV2TargetGroup
 	return json.Marshal(&struct {
 		Type       string
+		DependsOn  *[]string `json:",omitempty"`
 		Properties Properties
 	}{
 		Type:       r.AWSCloudFormationType(),
+		DependsOn:  r.DependsOn,
 		Properties: (Properties)(*r),
 	})
 }

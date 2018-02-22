@@ -84,6 +84,8 @@ type AWSS3Bucket struct {
 	// Required: false
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html#cfn-s3-bucket-websiteconfiguration
 	WebsiteConfiguration *AWSS3Bucket_WebsiteConfiguration `json:"WebsiteConfiguration,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type
@@ -97,9 +99,11 @@ func (r *AWSS3Bucket) MarshalJSON() ([]byte, error) {
 	type Properties AWSS3Bucket
 	return json.Marshal(&struct {
 		Type       string
+		DependsOn  *[]string `json:",omitempty"`
 		Properties Properties
 	}{
 		Type:       r.AWSCloudFormationType(),
+		DependsOn:  r.DependsOn,
 		Properties: (Properties)(*r),
 	})
 }

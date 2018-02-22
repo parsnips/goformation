@@ -44,6 +44,8 @@ type AWSElasticBeanstalkConfigurationTemplate struct {
 	// Required: false
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticbeanstalk-configurationtemplate.html#cfn-elasticbeanstalk-configurationtemplate-sourceconfiguration
 	SourceConfiguration *AWSElasticBeanstalkConfigurationTemplate_SourceConfiguration `json:"SourceConfiguration,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type
@@ -57,9 +59,11 @@ func (r *AWSElasticBeanstalkConfigurationTemplate) MarshalJSON() ([]byte, error)
 	type Properties AWSElasticBeanstalkConfigurationTemplate
 	return json.Marshal(&struct {
 		Type       string
+		DependsOn  *[]string `json:",omitempty"`
 		Properties Properties
 	}{
 		Type:       r.AWSCloudFormationType(),
+		DependsOn:  r.DependsOn,
 		Properties: (Properties)(*r),
 	})
 }

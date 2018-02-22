@@ -24,6 +24,8 @@ type AWSElastiCacheSecurityGroupIngress struct {
 	// Required: false
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-security-group-ingress.html#cfn-elasticache-securitygroupingress-ec2securitygroupownerid
 	EC2SecurityGroupOwnerId string `json:"EC2SecurityGroupOwnerId,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type
@@ -37,9 +39,11 @@ func (r *AWSElastiCacheSecurityGroupIngress) MarshalJSON() ([]byte, error) {
 	type Properties AWSElastiCacheSecurityGroupIngress
 	return json.Marshal(&struct {
 		Type       string
+		DependsOn  *[]string `json:",omitempty"`
 		Properties Properties
 	}{
 		Type:       r.AWSCloudFormationType(),
+		DependsOn:  r.DependsOn,
 		Properties: (Properties)(*r),
 	})
 }

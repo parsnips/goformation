@@ -114,6 +114,8 @@ type AWSElastiCacheCacheCluster struct {
 	// Required: false
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-cache-cluster.html#cfn-elasticache-cachecluster-vpcsecuritygroupids
 	VpcSecurityGroupIds []string `json:"VpcSecurityGroupIds,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type
@@ -127,9 +129,11 @@ func (r *AWSElastiCacheCacheCluster) MarshalJSON() ([]byte, error) {
 	type Properties AWSElastiCacheCacheCluster
 	return json.Marshal(&struct {
 		Type       string
+		DependsOn  *[]string `json:",omitempty"`
 		Properties Properties
 	}{
 		Type:       r.AWSCloudFormationType(),
+		DependsOn:  r.DependsOn,
 		Properties: (Properties)(*r),
 	})
 }

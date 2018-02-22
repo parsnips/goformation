@@ -13,6 +13,8 @@ type AWSGlueCrawler_Targets struct {
 	// Required: false
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-crawler-targets.html#cfn-glue-crawler-targets-s3targets
 	S3Targets []AWSGlueCrawler_S3Target `json:"S3Targets,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type

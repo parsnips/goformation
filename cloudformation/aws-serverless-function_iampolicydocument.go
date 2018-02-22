@@ -8,6 +8,8 @@ type AWSServerlessFunction_IAMPolicyDocument struct {
 	// Required: true
 	// See: http://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies.html
 	Statement interface{} `json:"Statement,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type

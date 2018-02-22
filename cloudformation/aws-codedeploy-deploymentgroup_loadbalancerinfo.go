@@ -13,6 +13,8 @@ type AWSCodeDeployDeploymentGroup_LoadBalancerInfo struct {
 	// Required: false
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-loadbalancerinfo.html#cfn-codedeploy-deploymentgroup-loadbalancerinfo-targetgroupinfolist
 	TargetGroupInfoList []AWSCodeDeployDeploymentGroup_TargetGroupInfo `json:"TargetGroupInfoList,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type

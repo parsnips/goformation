@@ -18,6 +18,8 @@ type AWSSSMPatchBaseline_Rule struct {
 	// Required: false
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-patchbaseline-rule.html#cfn-ssm-patchbaseline-rule-patchfiltergroup
 	PatchFilterGroup *AWSSSMPatchBaseline_PatchFilterGroup `json:"PatchFilterGroup,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type

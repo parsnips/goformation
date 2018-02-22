@@ -154,6 +154,8 @@ type AWSElastiCacheReplicationGroup struct {
 	// Required: false
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-replicationgroup.html#cfn-elasticache-replicationgroup-transitencryptionenabled
 	TransitEncryptionEnabled bool `json:"TransitEncryptionEnabled,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type
@@ -167,9 +169,11 @@ func (r *AWSElastiCacheReplicationGroup) MarshalJSON() ([]byte, error) {
 	type Properties AWSElastiCacheReplicationGroup
 	return json.Marshal(&struct {
 		Type       string
+		DependsOn  *[]string `json:",omitempty"`
 		Properties Properties
 	}{
 		Type:       r.AWSCloudFormationType(),
+		DependsOn:  r.DependsOn,
 		Properties: (Properties)(*r),
 	})
 }

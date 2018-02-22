@@ -84,6 +84,8 @@ type AWSLambdaFunction struct {
 	// Required: false
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-function.html#cfn-lambda-function-vpcconfig
 	VpcConfig *AWSLambdaFunction_VpcConfig `json:"VpcConfig,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type
@@ -97,9 +99,11 @@ func (r *AWSLambdaFunction) MarshalJSON() ([]byte, error) {
 	type Properties AWSLambdaFunction
 	return json.Marshal(&struct {
 		Type       string
+		DependsOn  *[]string `json:",omitempty"`
 		Properties Properties
 	}{
 		Type:       r.AWSCloudFormationType(),
+		DependsOn:  r.DependsOn,
 		Properties: (Properties)(*r),
 	})
 }

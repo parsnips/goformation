@@ -28,6 +28,8 @@ type AWSElasticLoadBalancingLoadBalancer_HealthCheck struct {
 	// Required: true
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb-health-check.html#cfn-elb-healthcheck-unhealthythreshold
 	UnhealthyThreshold string `json:"UnhealthyThreshold,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type

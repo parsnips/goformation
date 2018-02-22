@@ -13,6 +13,8 @@ type AWSKinesisFirehoseDeliveryStream_ProcessingConfiguration struct {
 	// Required: true
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-processingconfiguration.html#cfn-kinesisfirehose-deliverystream-processingconfiguration-processors
 	Processors []AWSKinesisFirehoseDeliveryStream_Processor `json:"Processors,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type

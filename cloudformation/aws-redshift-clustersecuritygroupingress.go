@@ -29,6 +29,8 @@ type AWSRedshiftClusterSecurityGroupIngress struct {
 	// Required: false
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-clustersecuritygroupingress.html#cfn-redshift-clustersecuritygroupingress-ec2securitygroupownerid
 	EC2SecurityGroupOwnerId string `json:"EC2SecurityGroupOwnerId,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type
@@ -42,9 +44,11 @@ func (r *AWSRedshiftClusterSecurityGroupIngress) MarshalJSON() ([]byte, error) {
 	type Properties AWSRedshiftClusterSecurityGroupIngress
 	return json.Marshal(&struct {
 		Type       string
+		DependsOn  *[]string `json:",omitempty"`
 		Properties Properties
 	}{
 		Type:       r.AWSCloudFormationType(),
+		DependsOn:  r.DependsOn,
 		Properties: (Properties)(*r),
 	})
 }

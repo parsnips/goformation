@@ -13,6 +13,8 @@ type AWSServerlessSimpleTable_ProvisionedThroughput struct {
 	// Required: true
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-provisionedthroughput.html
 	WriteCapacityUnits int `json:"WriteCapacityUnits,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type

@@ -79,6 +79,8 @@ type AWSDMSReplicationInstance struct {
 	// Required: false
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-replicationinstance.html#cfn-dms-replicationinstance-vpcsecuritygroupids
 	VpcSecurityGroupIds []string `json:"VpcSecurityGroupIds,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type
@@ -92,9 +94,11 @@ func (r *AWSDMSReplicationInstance) MarshalJSON() ([]byte, error) {
 	type Properties AWSDMSReplicationInstance
 	return json.Marshal(&struct {
 		Type       string
+		DependsOn  *[]string `json:",omitempty"`
 		Properties Properties
 	}{
 		Type:       r.AWSCloudFormationType(),
+		DependsOn:  r.DependsOn,
 		Properties: (Properties)(*r),
 	})
 }

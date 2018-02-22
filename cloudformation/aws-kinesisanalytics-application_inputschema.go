@@ -18,6 +18,8 @@ type AWSKinesisAnalyticsApplication_InputSchema struct {
 	// Required: true
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-application-inputschema.html#cfn-kinesisanalytics-application-inputschema-recordformat
 	RecordFormat *AWSKinesisAnalyticsApplication_RecordFormat `json:"RecordFormat,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type

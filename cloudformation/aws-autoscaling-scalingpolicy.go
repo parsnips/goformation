@@ -59,6 +59,8 @@ type AWSAutoScalingScalingPolicy struct {
 	// Required: false
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-policy.html#cfn-autoscaling-scalingpolicy-targettrackingconfiguration
 	TargetTrackingConfiguration *AWSAutoScalingScalingPolicy_TargetTrackingConfiguration `json:"TargetTrackingConfiguration,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type
@@ -72,9 +74,11 @@ func (r *AWSAutoScalingScalingPolicy) MarshalJSON() ([]byte, error) {
 	type Properties AWSAutoScalingScalingPolicy
 	return json.Marshal(&struct {
 		Type       string
+		DependsOn  *[]string `json:",omitempty"`
 		Properties Properties
 	}{
 		Type:       r.AWSCloudFormationType(),
+		DependsOn:  r.DependsOn,
 		Properties: (Properties)(*r),
 	})
 }

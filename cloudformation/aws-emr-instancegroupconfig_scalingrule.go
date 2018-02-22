@@ -23,6 +23,8 @@ type AWSEMRInstanceGroupConfig_ScalingRule struct {
 	// Required: true
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancegroupconfig-scalingrule.html#cfn-elasticmapreduce-instancegroupconfig-scalingrule-trigger
 	Trigger *AWSEMRInstanceGroupConfig_ScalingTrigger `json:"Trigger,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type

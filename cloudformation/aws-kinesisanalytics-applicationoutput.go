@@ -19,6 +19,8 @@ type AWSKinesisAnalyticsApplicationOutput struct {
 	// Required: true
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesisanalytics-applicationoutput.html#cfn-kinesisanalytics-applicationoutput-output
 	Output *AWSKinesisAnalyticsApplicationOutput_Output `json:"Output,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type
@@ -32,9 +34,11 @@ func (r *AWSKinesisAnalyticsApplicationOutput) MarshalJSON() ([]byte, error) {
 	type Properties AWSKinesisAnalyticsApplicationOutput
 	return json.Marshal(&struct {
 		Type       string
+		DependsOn  *[]string `json:",omitempty"`
 		Properties Properties
 	}{
 		Type:       r.AWSCloudFormationType(),
+		DependsOn:  r.DependsOn,
 		Properties: (Properties)(*r),
 	})
 }

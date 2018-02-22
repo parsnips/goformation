@@ -13,6 +13,8 @@ type AWSElasticBeanstalkApplication_ApplicationVersionLifecycleConfig struct {
 	// Required: false
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticbeanstalk-application-applicationversionlifecycleconfig.html#cfn-elasticbeanstalk-application-applicationversionlifecycleconfig-maxcountrule
 	MaxCountRule *AWSElasticBeanstalkApplication_MaxCountRule `json:"MaxCountRule,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type

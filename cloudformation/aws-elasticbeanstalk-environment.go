@@ -64,6 +64,8 @@ type AWSElasticBeanstalkEnvironment struct {
 	// Required: false
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-beanstalk-environment.html#cfn-beanstalk-environment-versionlabel
 	VersionLabel string `json:"VersionLabel,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type
@@ -77,9 +79,11 @@ func (r *AWSElasticBeanstalkEnvironment) MarshalJSON() ([]byte, error) {
 	type Properties AWSElasticBeanstalkEnvironment
 	return json.Marshal(&struct {
 		Type       string
+		DependsOn  *[]string `json:",omitempty"`
 		Properties Properties
 	}{
 		Type:       r.AWSCloudFormationType(),
+		DependsOn:  r.DependsOn,
 		Properties: (Properties)(*r),
 	})
 }

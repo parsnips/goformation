@@ -54,6 +54,8 @@ type AWSGlueCrawler struct {
 	// Required: true
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-crawler.html#cfn-glue-crawler-targets
 	Targets *AWSGlueCrawler_Targets `json:"Targets,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type
@@ -67,9 +69,11 @@ func (r *AWSGlueCrawler) MarshalJSON() ([]byte, error) {
 	type Properties AWSGlueCrawler
 	return json.Marshal(&struct {
 		Type       string
+		DependsOn  *[]string `json:",omitempty"`
 		Properties Properties
 	}{
 		Type:       r.AWSCloudFormationType(),
+		DependsOn:  r.DependsOn,
 		Properties: (Properties)(*r),
 	})
 }

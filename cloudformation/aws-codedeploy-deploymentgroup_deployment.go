@@ -18,6 +18,8 @@ type AWSCodeDeployDeploymentGroup_Deployment struct {
 	// Required: true
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-deployment.html#cfn-properties-codedeploy-deploymentgroup-deployment-revision
 	Revision *AWSCodeDeployDeploymentGroup_RevisionLocation `json:"Revision,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type

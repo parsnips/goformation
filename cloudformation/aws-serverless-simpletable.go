@@ -19,6 +19,8 @@ type AWSServerlessSimpleTable struct {
 	// Required: false
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-provisionedthroughput.html
 	ProvisionedThroughput *AWSServerlessSimpleTable_ProvisionedThroughput `json:"ProvisionedThroughput,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type
@@ -32,9 +34,11 @@ func (r *AWSServerlessSimpleTable) MarshalJSON() ([]byte, error) {
 	type Properties AWSServerlessSimpleTable
 	return json.Marshal(&struct {
 		Type       string
+		DependsOn  *[]string `json:",omitempty"`
 		Properties Properties
 	}{
 		Type:       r.AWSCloudFormationType(),
+		DependsOn:  r.DependsOn,
 		Properties: (Properties)(*r),
 	})
 }

@@ -38,6 +38,8 @@ type AWSCloudFrontStreamingDistribution_StreamingDistributionConfig struct {
 	// Required: true
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-streamingdistribution-streamingdistributionconfig.html#cfn-cloudfront-streamingdistribution-streamingdistributionconfig-trustedsigners
 	TrustedSigners *AWSCloudFrontStreamingDistribution_TrustedSigners `json:"TrustedSigners,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type

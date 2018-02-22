@@ -8,6 +8,8 @@ type AWSOpsWorksLayer_LifecycleEventConfiguration struct {
 	// Required: false
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-layer-lifecycleeventconfiguration.html#cfn-opsworks-layer-lifecycleconfiguration-shutdowneventconfiguration
 	ShutdownEventConfiguration *AWSOpsWorksLayer_ShutdownEventConfiguration `json:"ShutdownEventConfiguration,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type

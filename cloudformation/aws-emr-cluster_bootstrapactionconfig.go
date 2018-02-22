@@ -13,6 +13,8 @@ type AWSEMRCluster_BootstrapActionConfig struct {
 	// Required: true
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-bootstrapactionconfig.html#cfn-elasticmapreduce-cluster-bootstrapactionconfig-scriptbootstrapaction
 	ScriptBootstrapAction *AWSEMRCluster_ScriptBootstrapActionConfig `json:"ScriptBootstrapAction,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type

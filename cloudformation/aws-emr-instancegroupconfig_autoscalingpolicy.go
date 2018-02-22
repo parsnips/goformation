@@ -13,6 +13,8 @@ type AWSEMRInstanceGroupConfig_AutoScalingPolicy struct {
 	// Required: true
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancegroupconfig-autoscalingpolicy.html#cfn-elasticmapreduce-instancegroupconfig-autoscalingpolicy-rules
 	Rules []AWSEMRInstanceGroupConfig_ScalingRule `json:"Rules,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type

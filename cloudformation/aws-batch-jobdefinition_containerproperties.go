@@ -63,6 +63,8 @@ type AWSBatchJobDefinition_ContainerProperties struct {
 	// Required: false
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-containerproperties.html#cfn-batch-jobdefinition-containerproperties-volumes
 	Volumes []AWSBatchJobDefinition_Volumes `json:"Volumes,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type

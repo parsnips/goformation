@@ -89,6 +89,8 @@ type AWSServerlessFunction struct {
 	// Required: false
 	// See: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
 	VpcConfig *AWSServerlessFunction_VpcConfig `json:"VpcConfig,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type
@@ -102,9 +104,11 @@ func (r *AWSServerlessFunction) MarshalJSON() ([]byte, error) {
 	type Properties AWSServerlessFunction
 	return json.Marshal(&struct {
 		Type       string
+		DependsOn  *[]string `json:",omitempty"`
 		Properties Properties
 	}{
 		Type:       r.AWSCloudFormationType(),
+		DependsOn:  r.DependsOn,
 		Properties: (Properties)(*r),
 	})
 }

@@ -8,6 +8,8 @@ type AWSEMRCluster_InstanceFleetProvisioningSpecifications struct {
 	// Required: true
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-instancefleetprovisioningspecifications.html#cfn-elasticmapreduce-cluster-instancefleetprovisioningspecifications-spotspecification
 	SpotSpecification *AWSEMRCluster_SpotProvisioningSpecification `json:"SpotSpecification,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type

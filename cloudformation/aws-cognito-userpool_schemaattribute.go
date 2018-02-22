@@ -38,6 +38,8 @@ type AWSCognitoUserPool_SchemaAttribute struct {
 	// Required: false
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-schemaattribute.html#cfn-cognito-userpool-schemaattribute-stringattributeconstraints
 	StringAttributeConstraints *AWSCognitoUserPool_StringAttributeConstraints `json:"StringAttributeConstraints,omitempty"`
+
+	DependsOn *[]string `json:"-"`
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type
